@@ -1,35 +1,64 @@
-# Claude Code Theme
+# Claude Code Theme for Hermes Desktop
 
 > **No affiliation.** This is an independent, Claude Code-inspired theme. It is not affiliated with, endorsed by, or sponsored by Anthropic or Claude Code. "Claude" and "Claude Code" are trademarks of Anthropic.
 
-A Claude Code-inspired look for Hermes Desktop, plus a context-window meter beside the model switcher.
+A quiet, warm-neutral look for Hermes Desktop in the spirit of Claude Code: flat surfaces, soft greys, rounded cards, and colour used only where it carries meaning. It also adds a context-window meter next to the model switcher.
+
+![Overview in light mode](docs/overview-light.png)
 
 ## What it changes
-- One flat surface colour for sidebar and chat; the chat backdrop image is hidden.
-- Right-aligned, fit-to-text user bubbles; a single-border rounded composer.
-- Side-panel file viewer as one floating rounded card (tab strip included).
-- Softer selected sidebar rows; working-session arc matches the row corners.
-- Rounded white (light) / charcoal (dark) dropdown menus.
-- Light and dark palettes that follow your Appearance mode.
+
+**Chat**
+- Sidebar and chat share one flat background; the faint chat backdrop image is hidden.
+- Your messages become right-aligned grey bubbles sized to their text.
+- The composer is a single white card with one pale border, rounded corners and a black round send button.
+
+**Side panel**
+- The file viewer (tab strip and editor together) becomes one floating rounded card with a soft shadow.
+- Code uses a monospace font, quieter line numbers and a subtle current-line highlight.
+
+**Sidebar and menus**
+- Selected sessions get a soft grey band with gently rounded corners; the "working" arc follows the same shape.
+- Dropdowns and submenus become rounded cards with soft hover rows, quiet section labels and thin dividers.
+
+![Sidebar and filter menus](docs/sidebar-menus.png)
 
 ## Context meter
-A ring next to the model switcher shows how full the current chat's context window is.
-Click it for the exact token count and, when your provider reports them, your plan usage limits
-(read from Hermes's own `session.usage`; the plugin makes no network calls of its own).
+
+A small ring before the model switcher fills as the current chat's context window fills (it turns red above 85%). Click it to see:
+
+- **Context window:** tokens used, model maximum and percentage.
+- **Your usage limits:** session and weekly limits with reset times, when your provider reports them through Hermes.
+
+![Context meter popover](docs/context-meter.png)
+
+The meter only reads what Hermes already knows (`session.usage`). Providers without a usage API show "No limit data from this provider".
+
+## Light and dark
+
+Every colour has a light and a dark value and follows your Appearance setting (Light, Dark or System).
 
 ## Settings
-Settings → Plugins → Claude Code Theme: optional custom accent colour for light and dark mode (off by default).
 
-## Disclosure
-- No network calls, no credentials, no shell commands, no background processes.
-- Stores only its own accent preference via the plugin storage API.
-- Styling targets Hermes Desktop markup with CSS; a Desktop update may change some details.
+**Settings → Plugins → Claude Code Theme**
+
+- **Custom accent colour** (off by default): when on, sets the accent for light and dark mode separately. When off, your skin's accent is used.
+- **Reset to defaults.**
 
 ## Install
+
 ```bash
 hermes plugins install aliilhami/hermes-claude-code-theme
 ```
-Then enable it in Settings → Plugins.
+
+Then enable **Claude Code Theme** in Settings → Plugins. To remove it, disable or uninstall it there; nothing else is changed.
+
+## Disclosure
+
+- No network calls of its own, no credentials, no shell commands, no background processes.
+- Stores only its own accent preference, through the plugin storage API.
+- Styling targets Hermes Desktop markup with CSS, so a Desktop update may change some details. Issues and pull requests welcome.
 
 ## Licence
-MIT
+
+MIT. See [LICENSE](LICENSE).
