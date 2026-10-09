@@ -27,7 +27,7 @@ Settings → Plugins → Claude Code Theme: optional custom accent colour for li
 
 ## Install
 ```bash
-hermes plugins install <owner>/claude-code-theme
+hermes plugins install aliilhami/hermes-claude-code-theme
 ```
 Then enable it in Settings → Plugins.
 
