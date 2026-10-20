@@ -10,6 +10,9 @@ A quiet, warm-neutral look for Hermes Desktop in the spirit of Claude Code: flat
 
 **Chat**
 - Sidebar and chat share one flat background; the faint chat backdrop image is hidden.
+- Text and surface tokens use the theme's neutral palette, so the active skin does not tint body text yellow or brown.
+- Message prose uses a serif font stack; inline code and code blocks use a separate monospace stack.
+- Inline code has a muted red foreground in light mode and a peach foreground in dark mode, with a subtle background.
 - Your messages become right-aligned grey bubbles sized to their text.
 - The composer is a single white card with one pale border, rounded corners and a black round send button.
 
@@ -37,6 +40,8 @@ The meter only reads what Hermes already knows (`session.usage`). Providers with
 ## Light and dark
 
 Every colour has a light and a dark value and follows your Appearance setting (Light, Dark or System).
+
+Font families are resolved locally. Prose prefers Anthropic Serif Web Text or Claude Style Noto Serif when available, then Georgia and system fallbacks. Code prefers Anthropic Mono Web or JetBrains Mono, then system monospace fonts. The plugin does not bundle or download fonts; appearance depends on available fonts and glyph coverage.
 
 ## Settings
 

@@ -11,28 +11,67 @@ const STYLE_ID = 'claude-code-theme-css'
 const CSS = `
 /* Palette: light and dark palettes */
 :root {
-  --ccl-bg: #fbfbf9; --ccl-card: #ffffff; --ccl-subtle: #f7f7f6; --ccl-hover: #f3f3f2;
+  --ccl-bg: #fcfcfb; --ccl-card: #ffffff; --ccl-subtle: #f9f9f6; --ccl-hover: #f3f3f0;
   --ccl-bubble: #f1f1f0; --ccl-row-active: #eeedeb; --ccl-row-open: #f4f3f1;
   --ccl-border: #e2e1de; --ccl-border-strong: #d3d2ce; --ccl-divider: #ecebe8;
-  --ccl-text: #171717; --ccl-code: #1f2328; --ccl-muted: #888783; --ccl-icon: #555653;
+  --ccl-text: #141413; --ccl-code: #141413; --ccl-secondary: #575650; --ccl-muted: #6c6a63; --ccl-icon: #575650;
+  --ui-inline-code-foreground: #943333 !important;
+  --ui-inline-code-background: rgba(0, 0, 0, 0.05) !important;
   --ccl-check: var(--ccl-text); --ccl-selection: #d9e7fb;
   --ccl-send-bg: #1a1a1a; --ccl-send-fg: #ffffff;
   --ccl-shadow: rgba(0,0,0,0.08); --ccl-shadow-sm: rgba(0,0,0,0.06); --ccl-shadow-xs: rgba(0,0,0,0.04);
 }
 :root.dark {
-  --ccl-bg: #151515; --ccl-card: #1e1e1e; --ccl-subtle: #232323; --ccl-hover: #2a2a2a;
+  --ccl-bg: #141413; --ccl-card: #1c1b1a; --ccl-subtle: #242320; --ccl-hover: #2e2c29;
   --ccl-bubble: #262626; --ccl-row-active: #303030; --ccl-row-open: #242424;
   --ccl-border: #2f2f2f; --ccl-border-strong: #3d3d3d; --ccl-divider: #2b2b2b;
-  --ccl-text: #e7e7e7; --ccl-code: #e6edf3; --ccl-muted: #9b9b9b; --ccl-icon: #a3a3a3;
+  --ccl-text: #ecebe5; --ccl-code: #ecebe5; --ccl-secondary: #c8c6bd; --ccl-muted: #b0aea5; --ccl-icon: #c8c6bd;
+  --ui-inline-code-foreground: #e8a08a !important;
+  --ui-inline-code-background: rgba(255, 255, 255, 0.05) !important;
   --ccl-selection: #264f78;
   --ccl-send-bg: #e7e7e7; --ccl-send-fg: #151515;
   --ccl-shadow: rgba(0,0,0,0.45); --ccl-shadow-sm: rgba(0,0,0,0.35); --ccl-shadow-xs: rgba(0,0,0,0.25);
 }
 /* One surface colour everywhere */
 :root, .dark {
+  --ccl-font-prose: 'Anthropic Serif Web Text', 'Claude Style Noto Serif', Georgia, 'Times New Roman', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', serif;
+  --ccl-font-mono: 'Anthropic Mono Web', 'JetBrains Mono', 'SF Mono', Menlo, Consolas, 'PingFang SC', monospace;
+  --dt-font-mono: var(--ccl-font-mono) !important;
+  /* 同步宿主变量，避免正文、设置与侧栏继续继承底层皮肤的暖黄色。 */
+  --theme-foreground: var(--ccl-text) !important;
+  --theme-secondary: var(--ccl-subtle) !important;
+  --theme-background-seed: var(--ccl-bg) !important;
+  --theme-sidebar-seed: var(--ccl-bg) !important;
+  --theme-card-seed: var(--ccl-card) !important;
+  --theme-elevated-seed: var(--ccl-card) !important;
+  --theme-bubble-seed: var(--ccl-bubble) !important;
+  --ui-text-primary: var(--ccl-text) !important;
+  --ui-text-secondary: var(--ccl-secondary) !important;
+  --ui-text-tertiary: var(--ccl-muted) !important;
+  --ui-bg-chrome: var(--ccl-bg) !important;
+  --ui-bg-sidebar: var(--ccl-bg) !important;
+  --ui-bg-editor: var(--ccl-card) !important;
+  --ui-bg-elevated: var(--ccl-card) !important;
+  --dt-border: var(--ccl-border) !important;
+  --dt-input: var(--ccl-border-strong) !important;
+  --dt-secondary-foreground: var(--ccl-text) !important;
+  --dt-accent-foreground: var(--ccl-text) !important;
+  --dt-muted: var(--ccl-subtle) !important;
+  --dt-sidebar-border: var(--ccl-border) !important;
   --ui-chat-surface-background: var(--ccl-bg) !important;
   --ui-sidebar-surface-background: var(--ccl-bg) !important;
   --dt-background: var(--ccl-bg) !important;
+}
+/* 正文使用衬线字体，代码单独使用等宽字体，避免影响导航和公式。 */
+.aui-md :where(p, h1, h2, h3, h4, h5, h6, li, blockquote, td, th),
+[data-slot='aui_user-inline-text'],
+[data-slot='group-chat-message-content'] :where(p, h1, h2, h3, li, blockquote, td, th) {
+  font-family: var(--ccl-font-prose) !important;
+}
+.aui-md :where(code, pre),
+[data-slot='aui_user-inline-code'],
+[data-slot='group-chat-message-content'] :where(code, pre) {
+  font-family: var(--ccl-font-mono) !important;
 }
 /* Hide the statue chat backdrop regardless of the Appearance toggle */
 img[src*='filler-bg0'] {
@@ -77,7 +116,7 @@ aside .cm-editor .cm-gutters {
 }
 aside .cm-editor .cm-content,
 aside .preview-source-code {
-  font-family: 'SF Mono', Menlo, Monaco, Consolas, monospace !important;
+  font-family: var(--ccl-font-mono) !important;
 }
 aside .cm-editor .cm-content { color: var(--ccl-code) !important; caret-color: var(--ccl-code) !important; }
 aside .cm-editor .cm-cursor { border-left-color: var(--ccl-code) !important; }
@@ -188,7 +227,7 @@ aside .cm-editor.cm-focused .cm-selectionBackground {
 }
 [data-slot='composer-surface'] button[type='submit'] {
   background: var(--ccl-send-bg) !important;
-  color: var(--ccl-card) !important;
+  color: var(--ccl-send-fg) !important;
   border-radius: 9999px !important;
 }
 `
